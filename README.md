@@ -14,3 +14,6 @@ yarn run db:setup
 
 yarn dev
 ```
+## strapi admin info
+user thienhao789@gmail.com
+pass Abc123456
