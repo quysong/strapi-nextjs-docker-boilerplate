@@ -1,0 +1,94 @@
+include:
+  - project: credify-pte-ltd/devops/ci
+    file: /templates/.gitlab-ci-template.yml
+    ref: managed-services
+
+scan-code:
+  extends:
+    - .semgrep
+
+.demo-integration-server-vars:
+  variables:
+    PROJECT_PATH: .
+
+.demo-integration-server-build:
+  extends:
+    - .demo-integration-server-vars
+    - .scoped-service-build
+  variables:
+    PROJECT_NAME: demo-integration-server
+    DOCKER_FILE: ci.Dockerfile
+
+.demo-integration-server-tag:
+  extends:
+    - .demo-integration-server-vars
+    - .service-tag
+  variables:
+    PROJECT_NAME: demo-integration-server
+
+.demo-integration-server-spinnaker:
+  extends:
+    - .demo-integration-server-vars
+    - .spinnaker
+  variables:
+    PROJECT_NAME: demo-integration-server
+#-----------------dev-----------------#
+demo-integration-server-build-dev:
+  extends:
+    - .dev-env
+    - .demo-integration-server-build
+
+demo-integration-server-tag-dev:
+  extends:
+    - .dev-env
+    - .demo-integration-server-tag
+
+demo-integration-server-spinnaker-dev:
+  extends:
+    - .dev-env
+    - .demo-integration-server-spinnaker
+
+scan-docker-image:
+  extends:
+    - .dev-env
+    - .demo-integration-server-vars
+    - .scan-image
+  variables:
+    PROJECT_NAME: demo-integration-server
+    DOCKER_IMAGE: "$DOCKER_REGISTRY/$PROJECT_NAME:$IMAGE_TAG"
+  allow_failure: true
+#-----------------sit-----------------#
+demo-integration-server-build-master:
+  extends:
+    - .sit-env
+    - .demo-integration-server-build
+
+demo-integration-server-tag-sit:
+  extends:
+    - .sit-env
+    - .demo-integration-server-tag
+
+demo-integration-server-spinnaker-sit:
+  extends:
+    - .sit-env
+    - .demo-integration-server-spinnaker
+#-----------------uat-----------------#
+demo-integration-server-tag-uat:
+  extends:
+    - .uat-env
+    - .demo-integration-server-tag
+
+demo-integration-server-spinnaker-uat:
+  extends:
+    - .uat-env
+    - .demo-integration-server-spinnaker
+#-----------------sbx-----------------#
+demo-integration-server-tag-sbx:
+  extends:
+    - .sbx-env
+    - .demo-integration-server-tag
+
+demo-integration-server-spinnaker-sbx:
+  extends:
+    - .sbx-env
+    - .demo-integration-server-spinnaker

@@ -1,0 +1,43 @@
+version: "3.9"
+services:
+  frontend:
+    container_name: ${PROJECT_SLUG}_frontend
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+      args:
+        - NODE_ENV=${ENVIRONMENT}
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+      - ./logs/frontend:/root/.npm/_logs
+    env_file:
+      - ./.env
+    depends_on:
+      - postgres
+    networks:
+      - network1
+  
+  postgres:
+    image: postgres:15.1-alpine
+    container_name: ${PROJECT_SLUG}_postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=mydb
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/
+    networks:
+      - network1
+
+networks:
+  network1:
+volumes:
+  postgres-data:
