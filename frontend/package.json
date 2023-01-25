@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:setup": "yarn prisma db push && yarn prisma generate",
+    "db:push": "yarn prisma db push",
     "db:gui": "yarn prisma studio",
     "format": "prettier --write ."
   },
