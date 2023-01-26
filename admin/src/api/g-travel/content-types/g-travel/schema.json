@@ -11,9 +11,9 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Text": {
+    "content": {
       "type": "text",
-      "required": true
+      "default": "\"\""
     }
   }
 }

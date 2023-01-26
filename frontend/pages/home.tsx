@@ -38,9 +38,7 @@ export async function getServerSideProps() {
   const characterResp = {
     ...character,
     created_at: character.created_at?.toISOString(),
-    updated_at: character.updated_at?.toISOString(),
-    gold: character.gold?.toString(),
-    current_exp: character.current_exp?.toString(),
+    updated_at: character.updated_at?.toISOString()
   }
 
   const data = {

@@ -206,21 +206,21 @@ model g_accounts {
 model g_characters {
   id                                                  Int          @id @default(autoincrement())
   name                                                String?      @db.VarChar(255)
+  max_hp                                              String?      @db.VarChar(255)
+  current_hp                                          String?      @db.VarChar(255)
+  current_exp                                         String?      @db.VarChar(255)
+  gold                                                String?      @db.VarChar(255)
+  point                                               Int?
+  acc_id                                              Int?
+  location                                            Int?
+  current_atk                                         Int?
+  current_def                                         Int?
+  current_dex                                         Int?
+  lvl                                                 String?      @db.VarChar(255)
   created_at                                          DateTime?    @db.Timestamp(6)
   updated_at                                          DateTime?    @db.Timestamp(6)
   created_by_id                                       Int?
   updated_by_id                                       Int?
-  acc_id                                              Int?
-  localtion                                           Int?
-  gold                                                BigInt?
-  lvl                                                 Int?
-  point                                               Int?
-  max_hp                                              Int?
-  current_exp                                         BigInt?
-  current_hp                                          Int?
-  current_atk                                         Int?
-  current_def                                         Int?
-  current_dex                                         Int?
   admin_users_admin_usersTog_characters_created_by_id admin_users? @relation("admin_usersTog_characters_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
   admin_users_admin_usersTog_characters_updated_by_id admin_users? @relation("admin_usersTog_characters_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
 
@@ -230,7 +230,7 @@ model g_characters {
 
 model g_travels {
   id                                               Int          @id @default(autoincrement())
-  text                                             String?
+  content                                          String?
   created_at                                       DateTime?    @db.Timestamp(6)
   updated_at                                       DateTime?    @db.Timestamp(6)
   created_by_id                                    Int?

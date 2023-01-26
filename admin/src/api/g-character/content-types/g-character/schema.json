@@ -4,8 +4,7 @@
   "info": {
     "singularName": "g-character",
     "pluralName": "g-characters",
-    "displayName": "g_character",
-    "description": ""
+    "displayName": "g_character"
   },
   "options": {
     "draftAndPublish": false
@@ -15,52 +14,58 @@
     "name": {
       "type": "string",
       "required": true,
-      "maxLength": 15
-    },
-    "localtion": {
-      "type": "integer"
+      "maxLength": 15,
+      "minLength": 5,
+      "unique": true
     },
     "max_hp": {
-      "type": "integer",
-      "required": false,
-      "default": 200
+      "type": "string",
+      "default": "200"
+    },
+    "current_hp": {
+      "type": "string",
+      "default": "200"
     },
     "current_exp": {
-      "type": "biginteger",
-      "default": "0",
-      "required": false
-    },
-    "gold": {
-      "type": "biginteger",
+      "type": "string",
       "default": "0"
     },
-    "lvl": {
-      "type": "integer",
-      "default": 1
+    "gold": {
+      "type": "string",
+      "default": "1000"
     },
     "point": {
       "type": "integer",
       "default": 0
     },
-    "current_hp": {
-      "type": "integer",
-      "default": 200
-    },
     "acc_id": {
       "type": "integer",
       "required": true
     },
+    "location": {
+      "type": "integer",
+      "required": true,
+      "default": 1
+    },
     "current_atk": {
       "type": "integer",
+      "required": true,
       "default": 10
     },
     "current_def": {
       "type": "integer",
-      "default": 10
+      "default": 10,
+      "required": true
     },
     "current_dex": {
       "type": "integer",
-      "default": 10
+      "default": 10,
+      "required": true
+    },
+    "lvl": {
+      "type": "string",
+      "default": "1",
+      "required": true
     }
   }
 }
