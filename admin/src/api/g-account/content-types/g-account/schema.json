@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "g_accounts",
+  "info": {
+    "singularName": "g-account",
+    "pluralName": "g-accounts",
+    "displayName": "g_account",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_name": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "pass": {
+      "type": "password",
+      "required": true,
+      "maxLength": 11,
+      "minLength": 8
+    },
+    "is_member": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

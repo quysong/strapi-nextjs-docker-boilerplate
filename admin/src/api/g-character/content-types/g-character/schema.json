@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "g_characters",
+  "info": {
+    "singularName": "g-character",
+    "pluralName": "g-characters",
+    "displayName": "g_character",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 15
+    },
+    "localtion": {
+      "type": "integer"
+    },
+    "max_hp": {
+      "type": "integer",
+      "required": false,
+      "default": 200
+    },
+    "current_exp": {
+      "type": "biginteger",
+      "default": "0",
+      "required": false
+    },
+    "gold": {
+      "type": "biginteger",
+      "default": "0"
+    },
+    "lvl": {
+      "type": "integer",
+      "default": 1
+    },
+    "point": {
+      "type": "integer",
+      "default": 0
+    },
+    "current_hp": {
+      "type": "integer",
+      "default": 200
+    },
+    "acc_id": {
+      "type": "integer",
+      "required": true
+    },
+    "current_atk": {
+      "type": "integer",
+      "default": 10
+    },
+    "current_def": {
+      "type": "integer",
+      "default": 10
+    },
+    "current_dex": {
+      "type": "integer",
+      "default": 10
+    }
+  }
+}

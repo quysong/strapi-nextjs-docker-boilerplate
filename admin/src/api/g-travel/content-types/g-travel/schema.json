@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "g_travels",
+  "info": {
+    "singularName": "g-travel",
+    "pluralName": "g-travels",
+    "displayName": "g_travel"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
