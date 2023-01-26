@@ -17,8 +17,8 @@ model admin_permissions {
   updated_at                                               DateTime?                      @db.Timestamp(6)
   created_by_id                                            Int?
   updated_by_id                                            Int?
-  admin_users_admin_permissions_created_by_idToadmin_users admin_users?                   @relation("admin_permissions_created_by_idToadmin_users", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "admin_permissions_created_by_id_fk")
-  admin_users_admin_permissions_updated_by_idToadmin_users admin_users?                   @relation("admin_permissions_updated_by_idToadmin_users", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "admin_permissions_updated_by_id_fk")
+  admin_users_admin_permissions_created_by_idToadmin_users admin_users?                   @relation("admin_permissions_created_by_idToadmin_users", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_permissions_updated_by_idToadmin_users admin_users?                   @relation("admin_permissions_updated_by_idToadmin_users", fields: [updated_by_id], references: [id], onUpdate: NoAction)
   admin_permissions_role_links                             admin_permissions_role_links[]
 
   @@index([created_by_id], map: "admin_permissions_created_by_id_fk")
@@ -30,8 +30,8 @@ model admin_permissions_role_links {
   permission_id     Int?
   role_id           Int?
   permission_order  Int?
-  admin_permissions admin_permissions? @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "admin_permissions_role_links_fk")
-  admin_roles       admin_roles?       @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "admin_permissions_role_links_inv_fk")
+  admin_permissions admin_permissions? @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  admin_roles       admin_roles?       @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@unique([permission_id, role_id], map: "admin_permissions_role_links_unique")
   @@index([permission_id], map: "admin_permissions_role_links_fk")
@@ -48,8 +48,8 @@ model admin_roles {
   updated_at                                         DateTime?                      @db.Timestamp(6)
   created_by_id                                      Int?
   updated_by_id                                      Int?
-  admin_users_admin_roles_created_by_idToadmin_users admin_users?                   @relation("admin_roles_created_by_idToadmin_users", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "admin_roles_created_by_id_fk")
-  admin_users_admin_roles_updated_by_idToadmin_users admin_users?                   @relation("admin_roles_updated_by_idToadmin_users", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "admin_roles_updated_by_id_fk")
+  admin_users_admin_roles_created_by_idToadmin_users admin_users?                   @relation("admin_roles_created_by_idToadmin_users", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_roles_updated_by_idToadmin_users admin_users?                   @relation("admin_roles_updated_by_idToadmin_users", fields: [updated_by_id], references: [id], onUpdate: NoAction)
   admin_permissions_role_links                       admin_permissions_role_links[]
   admin_users_roles_links                            admin_users_roles_links[]
 
@@ -73,8 +73,8 @@ model admin_users {
   updated_at                                                                           DateTime?                      @db.Timestamp(6)
   created_by_id                                                                        Int?
   updated_by_id                                                                        Int?
-  admin_users_admin_usersToadmin_users_created_by_id                                   admin_users?                   @relation("admin_usersToadmin_users_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "admin_users_created_by_id_fk")
-  admin_users_admin_usersToadmin_users_updated_by_id                                   admin_users?                   @relation("admin_usersToadmin_users_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "admin_users_updated_by_id_fk")
+  admin_users_admin_usersToadmin_users_created_by_id                                   admin_users?                   @relation("admin_usersToadmin_users_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersToadmin_users_updated_by_id                                   admin_users?                   @relation("admin_usersToadmin_users_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
   admin_permissions_admin_permissions_created_by_idToadmin_users                       admin_permissions[]            @relation("admin_permissions_created_by_idToadmin_users")
   admin_permissions_admin_permissions_updated_by_idToadmin_users                       admin_permissions[]            @relation("admin_permissions_updated_by_idToadmin_users")
   admin_roles_admin_roles_created_by_idToadmin_users                                   admin_roles[]                  @relation("admin_roles_created_by_idToadmin_users")
@@ -115,8 +115,8 @@ model admin_users_roles_links {
   role_id     Int?
   role_order  Int?
   user_order  Int?
-  admin_users admin_users? @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "admin_users_roles_links_fk")
-  admin_roles admin_roles? @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "admin_users_roles_links_inv_fk")
+  admin_users admin_users? @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  admin_roles admin_roles? @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@unique([user_id, role_id], map: "admin_users_roles_links_unique")
   @@index([user_id], map: "admin_users_roles_links_fk")
@@ -146,8 +146,8 @@ model files {
   updated_at                                   DateTime?              @db.Timestamp(6)
   created_by_id                                Int?
   updated_by_id                                Int?
-  admin_users_admin_usersTofiles_created_by_id admin_users?           @relation("admin_usersTofiles_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "files_created_by_id_fk")
-  admin_users_admin_usersTofiles_updated_by_id admin_users?           @relation("admin_usersTofiles_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "files_updated_by_id_fk")
+  admin_users_admin_usersTofiles_created_by_id admin_users?           @relation("admin_usersTofiles_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersTofiles_updated_by_id admin_users?           @relation("admin_usersTofiles_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
   files_folder_links                           files_folder_links[]
   files_related_morphs                         files_related_morphs[]
 
@@ -166,8 +166,8 @@ model files_folder_links {
   file_id        Int?
   folder_id      Int?
   file_order     Int?
-  files          files?          @relation(fields: [file_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "files_folder_links_fk")
-  upload_folders upload_folders? @relation(fields: [folder_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "files_folder_links_inv_fk")
+  files          files?          @relation(fields: [file_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  upload_folders upload_folders? @relation(fields: [folder_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@unique([file_id, folder_id], map: "files_folder_links_unique")
   @@index([file_id], map: "files_folder_links_fk")
@@ -182,7 +182,7 @@ model files_related_morphs {
   related_type String? @db.VarChar(255)
   field        String? @db.VarChar(255)
   order        Int?
-  files        files?  @relation(fields: [file_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "files_related_morphs_fk")
+  files        files?  @relation(fields: [file_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@index([file_id], map: "files_related_morphs_fk")
 }
@@ -196,8 +196,8 @@ model g_accounts {
   updated_at                                        DateTime?    @db.Timestamp(6)
   created_by_id                                     Int?
   updated_by_id                                     Int?
-  admin_users_admin_usersTog_accounts_created_by_id admin_users? @relation("admin_usersTog_accounts_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "g_accounts_created_by_id_fk")
-  admin_users_admin_usersTog_accounts_updated_by_id admin_users? @relation("admin_usersTog_accounts_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "g_accounts_updated_by_id_fk")
+  admin_users_admin_usersTog_accounts_created_by_id admin_users? @relation("admin_usersTog_accounts_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersTog_accounts_updated_by_id admin_users? @relation("admin_usersTog_accounts_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
 
   @@index([created_by_id], map: "g_accounts_created_by_id_fk")
   @@index([updated_by_id], map: "g_accounts_updated_by_id_fk")
@@ -221,8 +221,8 @@ model g_characters {
   current_atk                                         Int?
   current_def                                         Int?
   current_dex                                         Int?
-  admin_users_admin_usersTog_characters_created_by_id admin_users? @relation("admin_usersTog_characters_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "g_characters_created_by_id_fk")
-  admin_users_admin_usersTog_characters_updated_by_id admin_users? @relation("admin_usersTog_characters_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "g_characters_updated_by_id_fk")
+  admin_users_admin_usersTog_characters_created_by_id admin_users? @relation("admin_usersTog_characters_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersTog_characters_updated_by_id admin_users? @relation("admin_usersTog_characters_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
 
   @@index([created_by_id], map: "g_characters_created_by_id_fk")
   @@index([updated_by_id], map: "g_characters_updated_by_id_fk")
@@ -235,8 +235,8 @@ model g_travels {
   updated_at                                       DateTime?    @db.Timestamp(6)
   created_by_id                                    Int?
   updated_by_id                                    Int?
-  admin_users_admin_usersTog_travels_created_by_id admin_users? @relation("admin_usersTog_travels_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "g_travels_created_by_id_fk")
-  admin_users_admin_usersTog_travels_updated_by_id admin_users? @relation("admin_usersTog_travels_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "g_travels_updated_by_id_fk")
+  admin_users_admin_usersTog_travels_created_by_id admin_users? @relation("admin_usersTog_travels_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersTog_travels_updated_by_id admin_users? @relation("admin_usersTog_travels_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
 
   @@index([created_by_id], map: "g_travels_created_by_id_fk")
   @@index([updated_by_id], map: "g_travels_updated_by_id_fk")
@@ -250,8 +250,8 @@ model i18n_locale {
   updated_at                                         DateTime?    @db.Timestamp(6)
   created_by_id                                      Int?
   updated_by_id                                      Int?
-  admin_users_admin_usersToi18n_locale_created_by_id admin_users? @relation("admin_usersToi18n_locale_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "i18n_locale_created_by_id_fk")
-  admin_users_admin_usersToi18n_locale_updated_by_id admin_users? @relation("admin_usersToi18n_locale_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "i18n_locale_updated_by_id_fk")
+  admin_users_admin_usersToi18n_locale_created_by_id admin_users? @relation("admin_usersToi18n_locale_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersToi18n_locale_updated_by_id admin_users? @relation("admin_usersToi18n_locale_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
 
   @@index([created_by_id], map: "i18n_locale_created_by_id_fk")
   @@index([updated_by_id], map: "i18n_locale_updated_by_id_fk")
@@ -264,8 +264,8 @@ model strapi_api_token_permissions {
   updated_at                                                          DateTime?                                  @db.Timestamp(6)
   created_by_id                                                       Int?
   updated_by_id                                                       Int?
-  admin_users_admin_usersTostrapi_api_token_permissions_created_by_id admin_users?                               @relation("admin_usersTostrapi_api_token_permissions_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "strapi_api_token_permissions_created_by_id_fk")
-  admin_users_admin_usersTostrapi_api_token_permissions_updated_by_id admin_users?                               @relation("admin_usersTostrapi_api_token_permissions_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "strapi_api_token_permissions_updated_by_id_fk")
+  admin_users_admin_usersTostrapi_api_token_permissions_created_by_id admin_users?                               @relation("admin_usersTostrapi_api_token_permissions_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersTostrapi_api_token_permissions_updated_by_id admin_users?                               @relation("admin_usersTostrapi_api_token_permissions_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
   strapi_api_token_permissions_token_links                            strapi_api_token_permissions_token_links[]
 
   @@index([created_by_id], map: "strapi_api_token_permissions_created_by_id_fk")
@@ -277,8 +277,8 @@ model strapi_api_token_permissions_token_links {
   api_token_permission_id      Int?
   api_token_id                 Int?
   api_token_permission_order   Int?
-  strapi_api_token_permissions strapi_api_token_permissions? @relation(fields: [api_token_permission_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "strapi_api_token_permissions_token_links_fk")
-  strapi_api_tokens            strapi_api_tokens?            @relation(fields: [api_token_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "strapi_api_token_permissions_token_links_inv_fk")
+  strapi_api_token_permissions strapi_api_token_permissions? @relation(fields: [api_token_permission_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  strapi_api_tokens            strapi_api_tokens?            @relation(fields: [api_token_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@unique([api_token_permission_id, api_token_id], map: "strapi_api_token_permissions_token_links_unique")
   @@index([api_token_permission_id], map: "strapi_api_token_permissions_token_links_fk")
@@ -299,8 +299,8 @@ model strapi_api_tokens {
   updated_at                                               DateTime?                                  @db.Timestamp(6)
   created_by_id                                            Int?
   updated_by_id                                            Int?
-  admin_users_admin_usersTostrapi_api_tokens_created_by_id admin_users?                               @relation("admin_usersTostrapi_api_tokens_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "strapi_api_tokens_created_by_id_fk")
-  admin_users_admin_usersTostrapi_api_tokens_updated_by_id admin_users?                               @relation("admin_usersTostrapi_api_tokens_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "strapi_api_tokens_updated_by_id_fk")
+  admin_users_admin_usersTostrapi_api_tokens_created_by_id admin_users?                               @relation("admin_usersTostrapi_api_tokens_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersTostrapi_api_tokens_updated_by_id admin_users?                               @relation("admin_usersTostrapi_api_tokens_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
   strapi_api_token_permissions_token_links                 strapi_api_token_permissions_token_links[]
 
   @@index([created_by_id], map: "strapi_api_tokens_created_by_id_fk")
@@ -345,8 +345,8 @@ model up_permissions {
   updated_at                                            DateTime?                   @db.Timestamp(6)
   created_by_id                                         Int?
   updated_by_id                                         Int?
-  admin_users_admin_usersToup_permissions_created_by_id admin_users?                @relation("admin_usersToup_permissions_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "up_permissions_created_by_id_fk")
-  admin_users_admin_usersToup_permissions_updated_by_id admin_users?                @relation("admin_usersToup_permissions_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "up_permissions_updated_by_id_fk")
+  admin_users_admin_usersToup_permissions_created_by_id admin_users?                @relation("admin_usersToup_permissions_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersToup_permissions_updated_by_id admin_users?                @relation("admin_usersToup_permissions_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
   up_permissions_role_links                             up_permissions_role_links[]
 
   @@index([created_by_id], map: "up_permissions_created_by_id_fk")
@@ -358,8 +358,8 @@ model up_permissions_role_links {
   permission_id    Int?
   role_id          Int?
   permission_order Int?
-  up_permissions   up_permissions? @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "up_permissions_role_links_fk")
-  up_roles         up_roles?       @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "up_permissions_role_links_inv_fk")
+  up_permissions   up_permissions? @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  up_roles         up_roles?       @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@unique([permission_id, role_id], map: "up_permissions_role_links_unique")
   @@index([permission_id], map: "up_permissions_role_links_fk")
@@ -376,8 +376,8 @@ model up_roles {
   updated_at                                      DateTime?                   @db.Timestamp(6)
   created_by_id                                   Int?
   updated_by_id                                   Int?
-  admin_users_admin_usersToup_roles_created_by_id admin_users?                @relation("admin_usersToup_roles_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "up_roles_created_by_id_fk")
-  admin_users_admin_usersToup_roles_updated_by_id admin_users?                @relation("admin_usersToup_roles_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "up_roles_updated_by_id_fk")
+  admin_users_admin_usersToup_roles_created_by_id admin_users?                @relation("admin_usersToup_roles_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersToup_roles_updated_by_id admin_users?                @relation("admin_usersToup_roles_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
   up_permissions_role_links                       up_permissions_role_links[]
   up_users_role_links                             up_users_role_links[]
 
@@ -399,8 +399,8 @@ model up_users {
   updated_at                                      DateTime?             @db.Timestamp(6)
   created_by_id                                   Int?
   updated_by_id                                   Int?
-  admin_users_admin_usersToup_users_created_by_id admin_users?          @relation("admin_usersToup_users_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "up_users_created_by_id_fk")
-  admin_users_admin_usersToup_users_updated_by_id admin_users?          @relation("admin_usersToup_users_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "up_users_updated_by_id_fk")
+  admin_users_admin_usersToup_users_created_by_id admin_users?          @relation("admin_usersToup_users_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersToup_users_updated_by_id admin_users?          @relation("admin_usersToup_users_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
   up_users_role_links                             up_users_role_links[]
 
   @@index([created_by_id], map: "up_users_created_by_id_fk")
@@ -412,8 +412,8 @@ model up_users_role_links {
   user_id    Int?
   role_id    Int?
   user_order Int?
-  up_users   up_users? @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "up_users_role_links_fk")
-  up_roles   up_roles? @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "up_users_role_links_inv_fk")
+  up_users   up_users? @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  up_roles   up_roles? @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@unique([user_id, role_id], map: "up_users_role_links_unique")
   @@index([user_id], map: "up_users_role_links_fk")
@@ -430,8 +430,8 @@ model upload_folders {
   updated_at                                                                            DateTime?                     @db.Timestamp(6)
   created_by_id                                                                         Int?
   updated_by_id                                                                         Int?
-  admin_users_admin_usersToupload_folders_created_by_id                                 admin_users?                  @relation("admin_usersToupload_folders_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "upload_folders_created_by_id_fk")
-  admin_users_admin_usersToupload_folders_updated_by_id                                 admin_users?                  @relation("admin_usersToupload_folders_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "upload_folders_updated_by_id_fk")
+  admin_users_admin_usersToupload_folders_created_by_id                                 admin_users?                  @relation("admin_usersToupload_folders_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersToupload_folders_updated_by_id                                 admin_users?                  @relation("admin_usersToupload_folders_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
   files_folder_links                                                                    files_folder_links[]
   upload_folders_parent_links_upload_foldersToupload_folders_parent_links_folder_id     upload_folders_parent_links[] @relation("upload_foldersToupload_folders_parent_links_folder_id")
   upload_folders_parent_links_upload_foldersToupload_folders_parent_links_inv_folder_id upload_folders_parent_links[] @relation("upload_foldersToupload_folders_parent_links_inv_folder_id")
@@ -445,8 +445,8 @@ model upload_folders_parent_links {
   folder_id                                                                Int?
   inv_folder_id                                                            Int?
   folder_order                                                             Int?
-  upload_folders_upload_foldersToupload_folders_parent_links_folder_id     upload_folders? @relation("upload_foldersToupload_folders_parent_links_folder_id", fields: [folder_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "upload_folders_parent_links_fk")
-  upload_folders_upload_foldersToupload_folders_parent_links_inv_folder_id upload_folders? @relation("upload_foldersToupload_folders_parent_links_inv_folder_id", fields: [inv_folder_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "upload_folders_parent_links_inv_fk")
+  upload_folders_upload_foldersToupload_folders_parent_links_folder_id     upload_folders? @relation("upload_foldersToupload_folders_parent_links_folder_id", fields: [folder_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  upload_folders_upload_foldersToupload_folders_parent_links_inv_folder_id upload_folders? @relation("upload_foldersToupload_folders_parent_links_inv_folder_id", fields: [inv_folder_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@unique([folder_id, inv_folder_id], map: "upload_folders_parent_links_unique")
   @@index([folder_id], map: "upload_folders_parent_links_fk")
