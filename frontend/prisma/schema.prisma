@@ -88,8 +88,14 @@ model admin_users {
   g_accounts_admin_usersTog_accounts_updated_by_id                                     g_accounts[]                   @relation("admin_usersTog_accounts_updated_by_id")
   g_characters_admin_usersTog_characters_created_by_id                                 g_characters[]                 @relation("admin_usersTog_characters_created_by_id")
   g_characters_admin_usersTog_characters_updated_by_id                                 g_characters[]                 @relation("admin_usersTog_characters_updated_by_id")
-  g_travels_admin_usersTog_travels_created_by_id                                       g_travels[]                    @relation("admin_usersTog_travels_created_by_id")
-  g_travels_admin_usersTog_travels_updated_by_id                                       g_travels[]                    @relation("admin_usersTog_travels_updated_by_id")
+  g_formulas_admin_usersTog_formulas_created_by_id                                     g_formulas[]                   @relation("admin_usersTog_formulas_created_by_id")
+  g_formulas_admin_usersTog_formulas_updated_by_id                                     g_formulas[]                   @relation("admin_usersTog_formulas_updated_by_id")
+  g_session_tokens_admin_usersTog_session_tokens_created_by_id                         g_session_tokens[]             @relation("admin_usersTog_session_tokens_created_by_id")
+  g_session_tokens_admin_usersTog_session_tokens_updated_by_id                         g_session_tokens[]             @relation("admin_usersTog_session_tokens_updated_by_id")
+  g_travel_logs_admin_usersTog_travel_logs_created_by_id                               g_travel_logs[]                @relation("admin_usersTog_travel_logs_created_by_id")
+  g_travel_logs_admin_usersTog_travel_logs_updated_by_id                               g_travel_logs[]                @relation("admin_usersTog_travel_logs_updated_by_id")
+  g_travel_texts_admin_usersTog_travel_texts_created_by_id                             g_travel_texts[]               @relation("admin_usersTog_travel_texts_created_by_id")
+  g_travel_texts_admin_usersTog_travel_texts_updated_by_id                             g_travel_texts[]               @relation("admin_usersTog_travel_texts_updated_by_id")
   i18n_locale_admin_usersToi18n_locale_created_by_id                                   i18n_locale[]                  @relation("admin_usersToi18n_locale_created_by_id")
   i18n_locale_admin_usersToi18n_locale_updated_by_id                                   i18n_locale[]                  @relation("admin_usersToi18n_locale_updated_by_id")
   strapi_api_token_permissions_admin_usersTostrapi_api_token_permissions_created_by_id strapi_api_token_permissions[] @relation("admin_usersTostrapi_api_token_permissions_created_by_id")
@@ -228,18 +234,69 @@ model g_characters {
   @@index([updated_by_id], map: "g_characters_updated_by_id_fk")
 }
 
-model g_travels {
-  id                                               Int          @id @default(autoincrement())
-  content                                          String?
-  created_at                                       DateTime?    @db.Timestamp(6)
-  updated_at                                       DateTime?    @db.Timestamp(6)
-  created_by_id                                    Int?
-  updated_by_id                                    Int?
-  admin_users_admin_usersTog_travels_created_by_id admin_users? @relation("admin_usersTog_travels_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
-  admin_users_admin_usersTog_travels_updated_by_id admin_users? @relation("admin_usersTog_travels_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
+model g_formulas {
+  id                                                Int          @id @default(autoincrement())
+  format_formula                                    String?
+  name_formula                                      String?      @db.VarChar(255)
+  created_at                                        DateTime?    @db.Timestamp(6)
+  updated_at                                        DateTime?    @db.Timestamp(6)
+  created_by_id                                     Int?
+  updated_by_id                                     Int?
+  admin_users_admin_usersTog_formulas_created_by_id admin_users? @relation("admin_usersTog_formulas_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersTog_formulas_updated_by_id admin_users? @relation("admin_usersTog_formulas_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
 
-  @@index([created_by_id], map: "g_travels_created_by_id_fk")
-  @@index([updated_by_id], map: "g_travels_updated_by_id_fk")
+  @@index([created_by_id], map: "g_formulas_created_by_id_fk")
+  @@index([updated_by_id], map: "g_formulas_updated_by_id_fk")
+}
+
+model g_session_tokens {
+  id                                                      Int          @id @default(autoincrement())
+  token                                                   String?      @db.VarChar(255)
+  created_at                                              DateTime?    @db.Timestamp(6)
+  updated_at                                              DateTime?    @db.Timestamp(6)
+  created_by_id                                           Int?
+  updated_by_id                                           Int?
+  admin_users_admin_usersTog_session_tokens_created_by_id admin_users? @relation("admin_usersTog_session_tokens_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersTog_session_tokens_updated_by_id admin_users? @relation("admin_usersTog_session_tokens_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
+
+  @@index([created_by_id], map: "g_session_tokens_created_by_id_fk")
+  @@index([updated_by_id], map: "g_session_tokens_updated_by_id_fk")
+}
+
+model g_travel_logs {
+  id                                                   Int          @id @default(autoincrement())
+  text                                                 String?
+  heading                                              String?      @db.VarChar(255)
+  wait_length                                          Int?
+  reward_gold                                          Int?
+  reward_exp                                           Int?
+  step_type                                            String?      @db.VarChar(255)
+  item                                                 String?
+  travel_background                                    String?      @db.VarChar(255)
+  char_id                                              Int?
+  created_at                                           DateTime?    @db.Timestamp(6)
+  updated_at                                           DateTime?    @db.Timestamp(6)
+  created_by_id                                        Int?
+  updated_by_id                                        Int?
+  admin_users_admin_usersTog_travel_logs_created_by_id admin_users? @relation("admin_usersTog_travel_logs_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersTog_travel_logs_updated_by_id admin_users? @relation("admin_usersTog_travel_logs_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
+
+  @@index([created_by_id], map: "g_travel_logs_created_by_id_fk")
+  @@index([updated_by_id], map: "g_travel_logs_updated_by_id_fk")
+}
+
+model g_travel_texts {
+  id                                                    Int          @id @default(autoincrement())
+  content                                               String?
+  created_at                                            DateTime?    @db.Timestamp(6)
+  updated_at                                            DateTime?    @db.Timestamp(6)
+  created_by_id                                         Int?
+  updated_by_id                                         Int?
+  admin_users_admin_usersTog_travel_texts_created_by_id admin_users? @relation("admin_usersTog_travel_texts_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersTog_travel_texts_updated_by_id admin_users? @relation("admin_usersTog_travel_texts_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
+
+  @@index([created_by_id], map: "g_travel_texts_created_by_id_fk")
+  @@index([updated_by_id], map: "g_travel_texts_updated_by_id_fk")
 }
 
 model i18n_locale {

@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "g_formulas",
+  "info": {
+    "singularName": "g-formula",
+    "pluralName": "g-formulas",
+    "displayName": "g_formula"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "format_formula": {
+      "type": "text",
+      "required": true
+    },
+    "name_formula": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

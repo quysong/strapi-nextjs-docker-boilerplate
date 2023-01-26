@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "g_travel_logs",
+  "info": {
+    "singularName": "g-travel-log",
+    "pluralName": "g-travel-logs",
+    "displayName": "g_travel_log"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "wait_length": {
+      "type": "integer",
+      "required": true,
+      "min": 2000
+    },
+    "reward_gold": {
+      "type": "integer",
+      "default": 0
+    },
+    "reward_exp": {
+      "type": "integer",
+      "default": 0
+    },
+    "step_type": {
+      "type": "string",
+      "required": true
+    },
+    "item": {
+      "type": "text"
+    },
+    "travel_background": {
+      "type": "string",
+      "required": true
+    },
+    "char_id": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

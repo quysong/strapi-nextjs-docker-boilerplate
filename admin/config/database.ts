@@ -8,9 +8,6 @@ export default ({ env }) => ({
       user: env('DATABASE_USERNAME', 'postgres'),
       password: env('DATABASE_PASSWORD', '12345'),
       ssl: env.bool('DATABASE_SSL', false),
-    },
-  },
-  settings: {
-    forceMigration: false,
+    }
   }
 });

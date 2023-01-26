@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "g_session_tokens",
+  "info": {
+    "singularName": "g-session-token",
+    "pluralName": "g-session-tokens",
+    "displayName": "g_session_token"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "token": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

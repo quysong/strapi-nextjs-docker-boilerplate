@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "g_travels",
+  "collectionName": "g_travel_texts",
   "info": {
-    "singularName": "g-travel",
-    "pluralName": "g-travels",
-    "displayName": "g_travel"
+    "singularName": "g-travel-text",
+    "pluralName": "g-travel-texts",
+    "displayName": "g_travel_text"
   },
   "options": {
     "draftAndPublish": false
@@ -13,7 +13,7 @@
   "attributes": {
     "content": {
       "type": "text",
-      "default": "\"\""
+      "required": true
     }
   }
 }
