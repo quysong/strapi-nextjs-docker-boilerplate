@@ -17,7 +17,7 @@
     "@credify/crypto": "^1.4.5",
     "@credify/nodejs": "^1.23.6",
     "@faker-js/faker": "^7.5.0",
-    "@prisma/client": "4.7.0",
+    "@prisma/client": "4.6.1",
     "@types/styled-components": "^5.1.26",
     "antd": "^4.23.3",
     "axios": "^0.27.2",
