@@ -5,7 +5,7 @@
 -- Dumped from database version 15.1
 -- Dumped by pg_dump version 15.1
 
--- Started on 2023-01-26 19:29:39
+-- Started on 2023-01-26 20:09:33
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -432,7 +432,6 @@ ALTER SEQUENCE public.g_accounts_id_seq OWNED BY public.g_accounts.id;
 
 CREATE TABLE public.g_characters (
     id integer NOT NULL,
-    deleting boolean,
     name character varying(255),
     created_at timestamp(6) without time zone,
     updated_at timestamp(6) without time zone,
@@ -440,8 +439,6 @@ CREATE TABLE public.g_characters (
     updated_by_id integer,
     acc_id integer,
     localtion integer,
-    hp integer,
-    currentexp bigint,
     gold bigint,
     lvl integer,
     point integer,
@@ -1605,8 +1602,8 @@ INSERT INTO public.g_accounts VALUES (2, 'admin2@gmail.com', '$2a$10$A2u2Olm54jm
 -- Data for Name: g_characters; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.g_characters VALUES (1, NULL, 'admin1', '2023-01-26 19:22:18.682', '2023-01-26 19:22:18.682', 1, 1, 1, 0, NULL, NULL, 1000, 1, 0, 200, 0, 200, 10, 10, 10);
-INSERT INTO public.g_characters VALUES (2, NULL, 'admin2', '2023-01-26 19:22:38.665', '2023-01-26 19:22:38.665', 1, 1, 2, 0, NULL, NULL, 1000, 1, 0, 200, 0, 200, 10, 10, 10);
+INSERT INTO public.g_characters VALUES (1, 'admin1', '2023-01-26 19:22:18.682', '2023-01-26 19:22:18.682', 1, 1, 1, 0, 1000, 1, 0, 200, 0, 200, 10, 10, 10);
+INSERT INTO public.g_characters VALUES (2, 'admin2', '2023-01-26 19:22:38.665', '2023-01-26 19:22:38.665', 1, 1, 2, 0, 1000, 1, 0, 200, 0, 200, 10, 10, 10);
 
 
 --
@@ -1676,8 +1673,8 @@ INSERT INTO public.strapi_core_store_settings VALUES (18, 'plugin_users-permissi
 INSERT INTO public.strapi_core_store_settings VALUES (15, 'plugin_upload_metrics', '{"weeklySchedule":"46 46 23 * * 3","lastWeeklyUpdate":1674665206032}', 'object', NULL, NULL);
 INSERT INTO public.strapi_core_store_settings VALUES (10, 'plugin_content_manager_configuration_content_types::plugin::i18n.locale', '{"uid":"plugin::i18n.locale","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"id","searchable":true,"sortable":true}},"name":{"edit":{"label":"name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"name","searchable":true,"sortable":true}},"code":{"edit":{"label":"code","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"code","searchable":true,"sortable":true}},"createdAt":{"edit":{"label":"createdAt","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"createdAt","searchable":true,"sortable":true}},"updatedAt":{"edit":{"label":"updatedAt","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"updatedAt","searchable":true,"sortable":true}}},"layouts":{"list":["id","name","code","createdAt"],"edit":[[{"name":"name","size":6},{"name":"code","size":6}]]}}', 'object', NULL, NULL);
 INSERT INTO public.strapi_core_store_settings VALUES (19, 'plugin_i18n_default_locale', '"en"', 'string', NULL, NULL);
-INSERT INTO public.strapi_core_store_settings VALUES (20, 'core_admin_auth', '{"providers":{"autoRegister":false,"defaultRole":null}}', 'object', NULL, NULL);
 INSERT INTO public.strapi_core_store_settings VALUES (23, 'plugin_content_manager_configuration_content_types::api::g-character.g-character', '{"uid":"api::g-character.g-character","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"name","defaultSortBy":"name","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"id","searchable":true,"sortable":true}},"name":{"edit":{"label":"name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"name","searchable":true,"sortable":true}},"localtion":{"edit":{"label":"localtion","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"localtion","searchable":true,"sortable":true}},"max_hp":{"edit":{"label":"max_hp","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"max_hp","searchable":true,"sortable":true}},"current_exp":{"edit":{"label":"current_exp","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"current_exp","searchable":true,"sortable":true}},"gold":{"edit":{"label":"gold","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"gold","searchable":true,"sortable":true}},"lvl":{"edit":{"label":"lvl","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"lvl","searchable":true,"sortable":true}},"point":{"edit":{"label":"point","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"point","searchable":true,"sortable":true}},"current_hp":{"edit":{"label":"current_hp","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"current_hp","searchable":true,"sortable":true}},"acc_id":{"edit":{"label":"acc_id","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"acc_id","searchable":true,"sortable":true}},"current_atk":{"edit":{"label":"current_atk","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"current_atk","searchable":true,"sortable":true}},"current_def":{"edit":{"label":"current_def","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"current_def","searchable":true,"sortable":true}},"current_dex":{"edit":{"label":"current_dex","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"current_dex","searchable":true,"sortable":true}},"createdAt":{"edit":{"label":"createdAt","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"createdAt","searchable":true,"sortable":true}},"updatedAt":{"edit":{"label":"updatedAt","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"updatedAt","searchable":true,"sortable":true}}},"layouts":{"edit":[[{"name":"name","size":6}],[{"name":"localtion","size":4}],[{"name":"gold","size":4},{"name":"lvl","size":4}],[{"name":"point","size":4},{"name":"max_hp","size":4},{"name":"current_exp","size":4}],[{"name":"current_hp","size":4},{"name":"acc_id","size":4},{"name":"current_atk","size":4}],[{"name":"current_def","size":4},{"name":"current_dex","size":4}]],"list":["id","name","gold","lvl","current_exp","localtion","createdAt"]}}', 'object', NULL, NULL);
+INSERT INTO public.strapi_core_store_settings VALUES (20, 'core_admin_auth', '{"providers":{"autoRegister":false,"defaultRole":null}}', 'object', NULL, NULL);
 INSERT INTO public.strapi_core_store_settings VALUES (22, 'plugin_content_manager_configuration_content_types::api::g-travel.g-travel', '{"uid":"api::g-travel.g-travel","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"id","defaultSortBy":"id","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"id","searchable":true,"sortable":true}},"Text":{"edit":{"label":"Text","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"Text","searchable":true,"sortable":true}},"createdAt":{"edit":{"label":"createdAt","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"createdAt","searchable":true,"sortable":true}},"updatedAt":{"edit":{"label":"updatedAt","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"updatedAt","searchable":true,"sortable":true}}},"layouts":{"list":["id","Text","createdAt","updatedAt"],"edit":[[{"name":"Text","size":6}]]}}', 'object', NULL, NULL);
 INSERT INTO public.strapi_core_store_settings VALUES (24, 'plugin_content_manager_configuration_content_types::api::g-account.g-account', '{"uid":"api::g-account.g-account","settings":{"bulkable":true,"filterable":true,"searchable":true,"pageSize":10,"mainField":"id","defaultSortBy":"id","defaultSortOrder":"ASC"},"metadatas":{"id":{"edit":{},"list":{"label":"id","searchable":true,"sortable":true}},"user_name":{"edit":{"label":"user_name","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"user_name","searchable":true,"sortable":true}},"pass":{"edit":{"label":"pass","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"pass","searchable":true,"sortable":true}},"is_member":{"edit":{"label":"is_member","description":"","placeholder":"","visible":true,"editable":true},"list":{"label":"is_member","searchable":true,"sortable":true}},"createdAt":{"edit":{"label":"createdAt","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"createdAt","searchable":true,"sortable":true}},"updatedAt":{"edit":{"label":"updatedAt","description":"","placeholder":"","visible":false,"editable":true},"list":{"label":"updatedAt","searchable":true,"sortable":true}}},"layouts":{"list":["id","user_name","is_member","createdAt"],"edit":[[{"name":"user_name","size":6},{"name":"pass","size":6}],[{"name":"is_member","size":4}]]}}', 'object', NULL, NULL);
 
@@ -3177,7 +3174,7 @@ ALTER TABLE ONLY public.upload_folders
     ADD CONSTRAINT upload_folders_updated_by_id_fk FOREIGN KEY (updated_by_id) REFERENCES public.admin_users(id) ON DELETE SET NULL;
 
 
--- Completed on 2023-01-26 19:29:40
+-- Completed on 2023-01-26 20:09:34
 
 --
 -- PostgreSQL database dump complete

@@ -205,7 +205,6 @@ model g_accounts {
 
 model g_characters {
   id                                                  Int          @id @default(autoincrement())
-  deleting                                            Boolean?
   name                                                String?      @db.VarChar(255)
   created_at                                          DateTime?    @db.Timestamp(6)
   updated_at                                          DateTime?    @db.Timestamp(6)
@@ -213,8 +212,6 @@ model g_characters {
   updated_by_id                                       Int?
   acc_id                                              Int?
   localtion                                           Int?
-  hp                                                  Int?
-  currentexp                                          BigInt?
   gold                                                BigInt?
   lvl                                                 Int?
   point                                               Int?
