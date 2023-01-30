@@ -4,7 +4,8 @@
   "info": {
     "singularName": "g-session-token",
     "pluralName": "g-session-tokens",
-    "displayName": "g_session_token"
+    "displayName": "g_session_token",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -14,6 +15,11 @@
     "token": {
       "type": "string",
       "required": true
+    },
+    "account_id": {
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }
