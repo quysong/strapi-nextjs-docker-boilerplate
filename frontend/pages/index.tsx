@@ -1,22 +1,14 @@
-import type { NextPage } from "next";
-import Head from "next/head";
+import React from 'react';
 
-const Home: NextPage = () => {
+import Hero from '../components/Hero';
+import Content from '../components/Content';
+
+export default function Index() {
   return (
-    <div>
-      <Head>
-        <title>Demo</title>
-        <meta name="description" content="This app demonstrates" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <p>
-          This app is for demo
-        </p>
-      </main>
-    </div>
+    <>
+      <Hero />
+      <hr />
+      <Content />
+    </>
   );
-};
-
-export default Home;
+}
