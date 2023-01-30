@@ -27,3 +27,6 @@ right click db `mydb` -> backup -> filenam: `mydb.sql`, format: plain, Encoding:
 
 ### restore
 create db `mydb` -> right click `Query tool` -> paste content of file `db/mydb.sql` then run
+
+## formula in game
+https://docs.google.com/spreadsheets/d/1eIeogcgAfz8Cvm1x46lZsA7rps5MGSx3/edit?usp=share_link&ouid=106034879138125403986&rtpof=true&sd=true
