@@ -1,8 +1,9 @@
 import React from 'react';
-import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { withPageAuthRequired, getSession } from '@auth0/nextjs-auth0';
 
 
-export default function SSRPage({ user }: any) {
+export default function SSRPage(props: any) {
+  console.log('props', props)
   return (
     <>
       <div className="mb-5" data-testid="ssr">
@@ -28,4 +29,13 @@ export default function SSRPage({ user }: any) {
   );
 }
 
-export const getServerSideProps = withPageAuthRequired();
+export const getServerSideProps = withPageAuthRequired({
+  async getServerSideProps(ctx) {
+    // Example get session before return client side on a page
+    const session = await getSession(ctx.req, ctx.res);
+    return {props: {
+      customProp: 'customProp',
+      session: JSON.parse(JSON.stringify(session)),
+    }};
+  }
+});

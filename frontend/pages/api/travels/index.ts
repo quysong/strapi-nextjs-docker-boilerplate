@@ -1,8 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { g_travel_texts, g_travel_logs, PrismaClient } from "@prisma/client";
 import { randomInRange } from "../../../utils/RandomRate";
+import { withApiAuthRequired, getSession } from '@auth0/nextjs-auth0'
 const prisma = new PrismaClient();
-export default async function handler(
+
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -34,6 +36,7 @@ export default async function handler(
             travel_background: "xxxxx/xxx/xxx.png",
             reward_exp: reward_exp,
             reward_gold: reward_gold,
+            created_at: new Date(),
           },
         });
         // character.gold = (Number(character.gold)+reward_gold).toString();
@@ -48,3 +51,5 @@ export default async function handler(
     }
   }
 }
+
+export default withApiAuthRequired(handler)
