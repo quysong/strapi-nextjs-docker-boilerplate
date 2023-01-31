@@ -4,7 +4,8 @@
   "info": {
     "singularName": "g-account",
     "pluralName": "g-accounts",
-    "displayName": "g_account"
+    "displayName": "g_account",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -16,16 +17,18 @@
       "required": true,
       "unique": true
     },
-    "pass": {
-      "type": "password",
-      "required": true,
-      "minLength": 8,
-      "maxLength": 11
-    },
     "is_member": {
       "type": "boolean",
       "default": false,
       "required": false
+    },
+    "meta_data": {
+      "type": "text",
+      "required": true
+    },
+    "sub": {
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "g-character",
     "pluralName": "g-characters",
-    "displayName": "g_character"
+    "displayName": "g_character",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -26,7 +27,7 @@
       "type": "string",
       "default": "200"
     },
-    "current_exp": {
+    "exp": {
       "type": "string",
       "default": "0"
     },
@@ -38,7 +39,7 @@
       "type": "integer",
       "default": 0
     },
-    "acc_id": {
+    "account_id": {
       "type": "integer",
       "required": true
     },
@@ -47,17 +48,17 @@
       "required": true,
       "default": 1
     },
-    "current_atk": {
+    "atk": {
       "type": "integer",
       "required": true,
       "default": 10
     },
-    "current_def": {
+    "def": {
       "type": "integer",
       "default": 10,
       "required": true
     },
-    "current_dex": {
+    "dex": {
       "type": "integer",
       "default": 10,
       "required": true

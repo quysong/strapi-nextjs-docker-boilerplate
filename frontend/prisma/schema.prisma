@@ -198,12 +198,13 @@ model files_related_morphs {
 model g_accounts {
   id                                                Int          @id @default(autoincrement())
   user_name                                         String?      @db.VarChar(255)
-  pass                                              String?      @db.VarChar(255)
   is_member                                         Boolean?
   created_at                                        DateTime?    @db.Timestamp(6)
   updated_at                                        DateTime?    @db.Timestamp(6)
   created_by_id                                     Int?
   updated_by_id                                     Int?
+  meta_data                                         String?
+  sub                                               String?      @db.VarChar(255)
   admin_users_admin_usersTog_accounts_created_by_id admin_users? @relation("admin_usersTog_accounts_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
   admin_users_admin_usersTog_accounts_updated_by_id admin_users? @relation("admin_usersTog_accounts_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
 
@@ -216,19 +217,19 @@ model g_characters {
   name                                                String?      @db.VarChar(255)
   max_hp                                              String?      @db.VarChar(255)
   current_hp                                          String?      @db.VarChar(255)
-  current_exp                                         String?      @db.VarChar(255)
   gold                                                String?      @db.VarChar(255)
   point                                               Int?
-  acc_id                                              Int?
   location                                            Int?
-  current_atk                                         Int?
-  current_def                                         Int?
-  current_dex                                         Int?
   lvl                                                 String?      @db.VarChar(255)
   created_at                                          DateTime?    @db.Timestamp(6)
   updated_at                                          DateTime?    @db.Timestamp(6)
   created_by_id                                       Int?
   updated_by_id                                       Int?
+  exp                                                 String?      @db.VarChar(255)
+  account_id                                          Int?
+  atk                                                 Int?
+  def                                                 Int?
+  dex                                                 Int?
   admin_users_admin_usersTog_characters_created_by_id admin_users? @relation("admin_usersTog_characters_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
   admin_users_admin_usersTog_characters_updated_by_id admin_users? @relation("admin_usersTog_characters_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
 
