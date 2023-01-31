@@ -1,10 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { g_travel_texts, g_travel_logs, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
+import { withApiAuthRequired, getSession } from '@auth0/nextjs-auth0'
+
 const prisma = new PrismaClient();
-export default async function handler(
+
+async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const session = await getSession(req, res)
+  console.log('session', session)
+
   switch (req.method) {
     case "POST": {
       let data = { ...req.body };
@@ -45,3 +51,5 @@ export default async function handler(
     }
   }
 }
+
+export default withApiAuthRequired(handler)
