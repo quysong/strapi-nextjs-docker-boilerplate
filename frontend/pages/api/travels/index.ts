@@ -8,9 +8,6 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = await getSession(req, res)
-  console.log('session', session)
-
   switch (req.method) {
     case "POST": {
       let data = { ...req.body };
@@ -37,6 +34,7 @@ async function handler(
             travel_background: "xxxxx/xxx/xxx.png",
             reward_exp: reward_exp,
             reward_gold: reward_gold,
+            created_at: new Date(),
           },
         });
         // character.gold = (Number(character.gold)+reward_gold).toString();
