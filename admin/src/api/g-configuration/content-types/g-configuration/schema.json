@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "g_configurations",
+  "info": {
+    "singularName": "g-configuration",
+    "pluralName": "g-configurations",
+    "displayName": "g_configuration"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "value_str": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -88,6 +88,8 @@ model admin_users {
   g_accounts_admin_usersTog_accounts_updated_by_id                                     g_accounts[]                   @relation("admin_usersTog_accounts_updated_by_id")
   g_characters_admin_usersTog_characters_created_by_id                                 g_characters[]                 @relation("admin_usersTog_characters_created_by_id")
   g_characters_admin_usersTog_characters_updated_by_id                                 g_characters[]                 @relation("admin_usersTog_characters_updated_by_id")
+  g_configurations_admin_usersTog_configurations_created_by_id                         g_configurations[]             @relation("admin_usersTog_configurations_created_by_id")
+  g_configurations_admin_usersTog_configurations_updated_by_id                         g_configurations[]             @relation("admin_usersTog_configurations_updated_by_id")
   g_formulas_admin_usersTog_formulas_created_by_id                                     g_formulas[]                   @relation("admin_usersTog_formulas_created_by_id")
   g_formulas_admin_usersTog_formulas_updated_by_id                                     g_formulas[]                   @relation("admin_usersTog_formulas_updated_by_id")
   g_session_tokens_admin_usersTog_session_tokens_created_by_id                         g_session_tokens[]             @relation("admin_usersTog_session_tokens_created_by_id")
@@ -234,6 +236,21 @@ model g_characters {
   @@index([updated_by_id], map: "g_characters_updated_by_id_fk")
 }
 
+model g_configurations {
+  id                                                      Int          @id @default(autoincrement())
+  name                                                    String?      @db.VarChar(255)
+  value_str                                               String?      @db.VarChar(255)
+  created_at                                              DateTime?    @db.Timestamp(6)
+  updated_at                                              DateTime?    @db.Timestamp(6)
+  created_by_id                                           Int?
+  updated_by_id                                           Int?
+  admin_users_admin_usersTog_configurations_created_by_id admin_users? @relation("admin_usersTog_configurations_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
+  admin_users_admin_usersTog_configurations_updated_by_id admin_users? @relation("admin_usersTog_configurations_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
+
+  @@index([created_by_id], map: "g_configurations_created_by_id_fk")
+  @@index([updated_by_id], map: "g_configurations_updated_by_id_fk")
+}
+
 model g_formulas {
   id                                                Int          @id @default(autoincrement())
   format_formula                                    String?
@@ -256,6 +273,7 @@ model g_session_tokens {
   updated_at                                              DateTime?    @db.Timestamp(6)
   created_by_id                                           Int?
   updated_by_id                                           Int?
+  account_id                                              Int?
   admin_users_admin_usersTog_session_tokens_created_by_id admin_users? @relation("admin_usersTog_session_tokens_created_by_id", fields: [created_by_id], references: [id], onUpdate: NoAction)
   admin_users_admin_usersTog_session_tokens_updated_by_id admin_users? @relation("admin_usersTog_session_tokens_updated_by_id", fields: [updated_by_id], references: [id], onUpdate: NoAction)
 
