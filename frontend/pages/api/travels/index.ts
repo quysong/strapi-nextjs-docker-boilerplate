@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { g_travel_texts, g_travel_logs, PrismaClient } from "@prisma/client";
-import { randomInRange } from "../../../utils/RandomRate";
+import { randomInRange, randomRate } from "../../../utils/RandomRate";
 import { withApiAuthRequired, getSession } from '@auth0/nextjs-auth0'
+import { stepType } from "../../../enums/steptype";
 const prisma = new PrismaClient();
 
 async function handler(
@@ -20,12 +21,49 @@ async function handler(
         let g_text = await prisma.g_travel_texts.findMany();
         let rand_index = Math.floor(randomInRange(0,g_text.length-1));
         let wait_time = Math.floor(randomInRange(Number(g_conf.find(x=>x.name == "wait_time_min")?.value_str),Number(g_conf.find(x=>x.name == "wait_time_max")?.value_str)));
-        let reward_gold = Math.floor(
-          randomInRange(Number(g_conf.find(x=>x.name == "reward_gold_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_gold_max")?.value_str)) * (Number(character.lvl) + Number(g_conf.find(x=>x.name == "monster_extra_gold")?.value_str))
-        );
-        let reward_exp = Math.floor(
-          (Number(character.lvl) * 100) / randomInRange(Number(g_conf.find(x=>x.name == "reward_exp_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_exp_max")?.value_str))
-        );
+        let reward_gold:number= 0;
+        let reward_exp:number = 0;
+
+        switch (randomRate([70,5,11,14])){
+          case stepType.text:{
+            break;
+          }
+          case stepType.npc:{
+            break;
+          }
+          case stepType.item:{
+            break;
+          }
+          case stepType.material:{
+            break;
+          }
+        }
+
+
+        switch (randomInRange(1,4)){
+          case 1:{
+            reward_gold = Math.floor(
+              randomInRange(Number(g_conf.find(x=>x.name == "reward_gold_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_gold_max")?.value_str)) * (Number(character.lvl) + Number(g_conf.find(x=>x.name == "monster_extra_gold")?.value_str))
+            );
+            break;
+          }
+          case 2:{
+            reward_exp = Math.floor(
+              (Number(character.lvl) * 100) / randomInRange(Number(g_conf.find(x=>x.name == "reward_exp_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_exp_max")?.value_str))
+            );
+            break;
+          }
+          case 3:{
+            reward_gold = Math.floor(
+              randomInRange(Number(g_conf.find(x=>x.name == "reward_gold_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_gold_max")?.value_str)) * (Number(character.lvl) + Number(g_conf.find(x=>x.name == "monster_extra_gold")?.value_str))
+            );
+            reward_exp = Math.floor(
+              (Number(character.lvl) * 100) / randomInRange(Number(g_conf.find(x=>x.name == "reward_exp_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_exp_max")?.value_str))
+            );
+            break;
+          }
+        }
+        
         let create_travel_log = await prisma.g_travel_logs.create({
           data: {
             text: g_text[rand_index].content,
