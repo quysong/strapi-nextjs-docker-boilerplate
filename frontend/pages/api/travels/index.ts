@@ -26,25 +26,30 @@ async function handler(
 
         switch (randomRate([70,5,11,14])){
           case stepType.text:{
+            const reward_gold_min = Number(g_conf.find(x=>x.name == "reward_gold_min")?.value_str);
+            const reward_gold_max = Number(g_conf.find(x=>x.name == "reward_gold_max")?.value_str);
+            const reward_exp_min = Number(g_conf.find(x=>x.name == "reward_exp_min")?.value_str);
+            const reward_exp_max = Number(g_conf.find(x=>x.name == "reward_exp_max")?.value_str);
+            const monster_extra_gold = Number(g_conf.find(x=>x.name == "monster_extra_gold")?.value_str);
             switch (randomInRange(1,4)){
               case 1:{
                 reward_gold = Math.floor(
-                  randomInRange(Number(g_conf.find(x=>x.name == "reward_gold_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_gold_max")?.value_str)) * (Number(character.lvl) + Number(g_conf.find(x=>x.name == "monster_extra_gold")?.value_str))
+                  randomInRange(reward_gold_min,reward_gold_max) * (Number(character.lvl) + monster_extra_gold)
                 );
                 break;
               }
               case 2:{
                 reward_exp = Math.floor(
-                  (Number(character.lvl) * 100) / randomInRange(Number(g_conf.find(x=>x.name == "reward_exp_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_exp_max")?.value_str))
+                  (Number(character.lvl) * 100) / randomInRange(reward_exp_min,reward_exp_max)
                 );
                 break;
               }
               case 3:{
                 reward_gold = Math.floor(
-                  randomInRange(Number(g_conf.find(x=>x.name == "reward_gold_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_gold_max")?.value_str)) * (Number(character.lvl) + Number(g_conf.find(x=>x.name == "monster_extra_gold")?.value_str))
+                  randomInRange(reward_gold_min,reward_gold_max) * (Number(character.lvl) + monster_extra_gold)
                 );
                 reward_exp = Math.floor(
-                  (Number(character.lvl) * 100) / randomInRange(Number(g_conf.find(x=>x.name == "reward_exp_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_exp_max")?.value_str))
+                  (Number(character.lvl) * 100) / randomInRange(reward_exp_min,reward_exp_max)
                 );
                 break;
               }
@@ -52,12 +57,27 @@ async function handler(
             break;
           }
           case stepType.npc:{
+            switch (randomInRange(1,2)){
+              //monster
+              case 1:{
+
+                break;
+              }
+              //player
+              case 2:{
+
+                break;
+              }
+            }
             break;
           }
           case stepType.item:{
             break;
           }
           case stepType.material:{
+            //example for test
+            let lstMaterial = [{name:"iron",rate_percent:25},{name:"bronez",rate_percent:25},{name:"mirthil",rate_percent:25},{name:"adaminate",rate_percent:25}]
+            let indexOfMaterial = randomRate([lstMaterial[0].rate_percent,lstMaterial[1].rate_percent,lstMaterial[2].rate_percent,lstMaterial[3].rate_percent]);
             break;
           }
         }
