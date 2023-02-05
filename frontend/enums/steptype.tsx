@@ -1,5 +1,5 @@
 export enum stepType {
-    text = 1,
+    text,
     npc,
     item,
     material,
