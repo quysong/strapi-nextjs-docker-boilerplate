@@ -26,6 +26,29 @@ async function handler(
 
         switch (randomRate([70,5,11,14])){
           case stepType.text:{
+            switch (randomInRange(1,4)){
+              case 1:{
+                reward_gold = Math.floor(
+                  randomInRange(Number(g_conf.find(x=>x.name == "reward_gold_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_gold_max")?.value_str)) * (Number(character.lvl) + Number(g_conf.find(x=>x.name == "monster_extra_gold")?.value_str))
+                );
+                break;
+              }
+              case 2:{
+                reward_exp = Math.floor(
+                  (Number(character.lvl) * 100) / randomInRange(Number(g_conf.find(x=>x.name == "reward_exp_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_exp_max")?.value_str))
+                );
+                break;
+              }
+              case 3:{
+                reward_gold = Math.floor(
+                  randomInRange(Number(g_conf.find(x=>x.name == "reward_gold_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_gold_max")?.value_str)) * (Number(character.lvl) + Number(g_conf.find(x=>x.name == "monster_extra_gold")?.value_str))
+                );
+                reward_exp = Math.floor(
+                  (Number(character.lvl) * 100) / randomInRange(Number(g_conf.find(x=>x.name == "reward_exp_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_exp_max")?.value_str))
+                );
+                break;
+              }
+            }
             break;
           }
           case stepType.npc:{
@@ -40,29 +63,7 @@ async function handler(
         }
 
 
-        switch (randomInRange(1,4)){
-          case 1:{
-            reward_gold = Math.floor(
-              randomInRange(Number(g_conf.find(x=>x.name == "reward_gold_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_gold_max")?.value_str)) * (Number(character.lvl) + Number(g_conf.find(x=>x.name == "monster_extra_gold")?.value_str))
-            );
-            break;
-          }
-          case 2:{
-            reward_exp = Math.floor(
-              (Number(character.lvl) * 100) / randomInRange(Number(g_conf.find(x=>x.name == "reward_exp_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_exp_max")?.value_str))
-            );
-            break;
-          }
-          case 3:{
-            reward_gold = Math.floor(
-              randomInRange(Number(g_conf.find(x=>x.name == "reward_gold_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_gold_max")?.value_str)) * (Number(character.lvl) + Number(g_conf.find(x=>x.name == "monster_extra_gold")?.value_str))
-            );
-            reward_exp = Math.floor(
-              (Number(character.lvl) * 100) / randomInRange(Number(g_conf.find(x=>x.name == "reward_exp_min")?.value_str),Number(g_conf.find(x=>x.name == "reward_exp_max")?.value_str))
-            );
-            break;
-          }
-        }
+        
         
         let create_travel_log = await prisma.g_travel_logs.create({
           data: {
