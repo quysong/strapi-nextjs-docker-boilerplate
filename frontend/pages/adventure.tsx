@@ -70,7 +70,7 @@ export default function Adventure({ session, character }: AdventureProps) {
 
   const calcGoldGetByLevel = (lvl: string) => {
     const formulaString = DEFAULT_FORMULAS.GOLD_GET_BY_LEVEL;
-    const formulaEmbeddedParams = format(formulaString, { LEVEL: lvl, BASE_GOLD })
+    const formulaEmbeddedParams = format(formulaString, { LEVEL: lvl, BASE_GOLD, MIN_GOLD: "1.3", MAX_GOLD: "2" })
     console.log('formulaEmbeddedParams', formulaEmbeddedParams)
     const rs = eval(formulaEmbeddedParams);
     return rs;
