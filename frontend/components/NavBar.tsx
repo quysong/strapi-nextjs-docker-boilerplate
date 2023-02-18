@@ -47,6 +47,11 @@ const NavBar = () => {
                       Server-side rendered page
                     </PageLink>
                   </NavItem>
+                  <NavItem>
+                    <PageLink href="/adventure" className="nav-link" testId="navbar-ssr">
+                      Adventure
+                    </PageLink>
+                  </NavItem>
                 </>
               )}
             </Nav>
