@@ -19,14 +19,15 @@ const Home: NextPage = (props) => {
   }
 
   return (
-    <div>
-      <main>
-        <p>
-          This app is for Home
-          {JSON.stringify(props)}
-        </p>
-      </main>
-    </div>
+    <>
+      <div>
+        <main>
+          <p>
+            This app is for Home
+            {JSON.stringify(props)}
+          </p>
+        </main>
+      </div></>
   );
 };
 
