@@ -2,6 +2,13 @@ version: 1
 applications:
   - frontend:
       phases:
+        preTest:
+          commands:
+            - npm ci
+        test:
+          commands:
+            - npm run test
+        
         preBuild:
           commands:
             - npm ci
@@ -15,13 +22,4 @@ applications:
       cache:
         paths:
           - node_modules/**/*
-    appRoot: frontend
-  - test:
-      phases:
-        preTest:
-          commands:
-            - npm ci
-        test:
-          commands:
-            - npm run test
     appRoot: frontend
