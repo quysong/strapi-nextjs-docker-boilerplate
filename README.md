@@ -7,7 +7,7 @@ docker-compose up -d
 To start source nextjs:
 ```
 cd frontend
-yarn install
+yarn install --frozen-lockfile
 
 (For fist time)
 yarn run db:setup
